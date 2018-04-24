@@ -4,4 +4,5 @@ validator\Validator.class
 App.class
 ui\LaboratoriesUI.class
 controller\LaboratoriesController.class
+controller\AddStudentTest.class
 repository\FileDataPersistence.class
