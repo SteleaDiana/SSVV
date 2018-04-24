@@ -55,35 +55,34 @@ public class FileDataPersistence {
             System.out.println(e.getMessage());
         }
     }
-    public void addGrade(String studentRegNb, String labNumber, float grade)
-            throws IOException, NumberFormatException, ParseException {
-        File fileA = new File(file);
-        File fileB = new File("temp");
+    public void addGrade(String studentRegNb, String labNumber, float grade) throws IOException, NumberFormatException, ParseException {
+        File fileA = new File(file); //1
+        File fileB = new File("temp"); //1
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileA));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileB));
+        BufferedReader reader = new BufferedReader(new FileReader(fileA)); //1
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileB)); //1
 
-        String line;
+        String line; //1
 
-        while ((line = reader.readLine()) != null) {
-            String[] temp = line.split(" ");
-            String fileLabNumber = temp[0];
-            String fileStudentNumber = temp[4];
-            if (fileLabNumber.equals(labNumber) && fileStudentNumber.equals(studentRegNb)) {
+        while ((line = reader.readLine()) != null) { //2
+            String[] temp = line.split(" "); //3
+            String fileLabNumber = temp[0]; //3
+            String fileStudentNumber = temp[4]; //3
+            if (fileLabNumber.equals(labNumber) && fileStudentNumber.equals(studentRegNb)) { //4
                 Laboratory laboratory = new Laboratory(
                         Integer.valueOf(temp[0]), temp[1],
-                        Integer.valueOf(temp[2]), temp[4]);
-                laboratory.setGrade(grade);
-                writer.write(laboratory.toString() + "\n");
+                        Integer.valueOf(temp[2]), temp[4]); //5
+                laboratory.setGrade(grade); //5
+                writer.write(laboratory.toString() + "\n"); //5
             } else {
-                writer.write(line + "\n");
+                writer.write(line + "\n"); //6
             }
         }
-        writer.close();
-        reader.close();
+        writer.close(); //7
+        reader.close(); //7
 
-        fileA.delete();
-        fileB.renameTo(fileA);
+        fileA.delete(); //7
+        fileB.renameTo(fileA); //7
     }
 
     public Map<String, List<Laboratory>> getLaboratoryMap()

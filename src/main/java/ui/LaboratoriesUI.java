@@ -33,7 +33,7 @@ public class LaboratoriesUI {
             if(line.equals("1")){
                 String registrationNumber, name;
                 int group;
-                System.out.print("Registration number should be of form aaaa0000.\nRegistration Number: ");
+                System.out.print("Registration Number (aaaa0000): ");
                 registrationNumber = br.readLine();
                 System.out.print("First name and Second Name: ");
                 name = br.readLine();
