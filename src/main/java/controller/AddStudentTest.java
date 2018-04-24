@@ -4,14 +4,14 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import model.Student;
 
-public class AddStudent extends TestCase
+public class AddStudentTest extends TestCase
 {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public AddStudent( String testName )
+    public AddStudentTest(String testName )
     {
         super( testName );
     }
@@ -21,7 +21,7 @@ public class AddStudent extends TestCase
      */
     public static Test suite()
     {
-        return new TestSuite( AddStudent.class );
+        return new TestSuite( AddStudentTest.class );
     }
 
     /**
