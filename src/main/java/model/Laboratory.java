@@ -11,6 +11,8 @@ public class Laboratory {
     private float grade = 1;
     private String studentRegNumber;
 
+    public Laboratory(){}
+
     public Laboratory(int laboratoryNumber, String dateString, int problemNumber,
                       String studentRegNumber) throws ParseException {
         this.laboratoryNumber = laboratoryNumber;

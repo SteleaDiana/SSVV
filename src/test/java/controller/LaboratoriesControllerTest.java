@@ -1,4 +1,5 @@
 package controller;
+import model.Laboratory;
 import model.Student;
 import org.junit.Before;
 import org.junit.Rule;
@@ -8,6 +9,7 @@ import repository.FileDataPersistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -105,6 +107,83 @@ public class LaboratoriesControllerTest {
 
         Boolean success = ctr.saveStudent(p);
         assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithSucces() throws Exception {
+
+        Boolean success = ctr.saveLaboratory(getMockedLab());
+        assertTrue(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongLabNumber() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setLaboratoryNumber(0);
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongStudentRegNumber() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setStudentRegNumber("sdie");
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongProblemNb() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setProblemNumber(20);
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongGrade1() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setGrade(20);
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongGrade2() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setGrade(0);
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addLaboratoryWithWrongDate() throws Exception {
+        Laboratory laboratory = getMockedLab();
+        laboratory.setDate(new Date("18-Feb-2019"));
+        Boolean success = ctr.saveLaboratory(laboratory);
+        assertFalse(success);
+    }
+
+    @Test
+    public void addGradeWithSucces() throws Exception {
+        Boolean success = ctr.addGrade("sdie2021", 3, 10);
+        assertTrue(success);
+    }
+
+    @Test
+    public void addGradeWithError() throws Exception {
+        Boolean success = ctr.addGrade("sdie2021", 4, 12);
+        assertFalse(success);
+    }
+
+    public Laboratory getMockedLab(){
+        Laboratory laboratory = new Laboratory();
+        laboratory.setLaboratoryNumber(1);
+        laboratory.setGrade(2);
+        laboratory.setDate(new Date("12-Apr-2018"));
+        laboratory.setProblemNumber(7);
+        laboratory.setStudentRegNumber("aaaa1234");
+        return laboratory;
     }
 
 }

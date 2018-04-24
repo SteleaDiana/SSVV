@@ -38,19 +38,17 @@ public class LaboratoriesController {
         if (Validator.validateLaboratory(laboratory)) {
             this.laboratoryPersistence.saveLaboratory(laboratory);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
-    public boolean addGrade(String student, String labNumber, float grade)
+    public boolean addGrade(String student, int labNumber, float grade)
             throws NumberFormatException, IOException, ParseException {
         if (Validator.validateGrade(grade)) {
-            this.laboratoryPersistence.addGrade(student, labNumber, grade);
+            this.laboratoryPersistence.addGrade(student, labNumber+"", grade);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public List<Student> passedStudents() throws NumberFormatException,

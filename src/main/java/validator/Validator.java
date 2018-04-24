@@ -7,11 +7,16 @@ import java.util.Date;
 
 public class Validator {
 
-    public static boolean validateStudent(Student student) {
-        if(!student.getRegNumber().matches("[a-zA-Z]{4}[\\d]{4}")){
+    public static boolean validateRegNb(String regNb){
+        if(!regNb.matches("[a-zA-Z]{4}[\\d]{4}")){
             System.out.println("Wrong Format!");
             return false;
         }
+        return true;
+    }
+
+    public static boolean validateStudent(Student student) {
+
         if (!student.getName().matches("[a-zA-Z]+[\\s]?[a-zA-Z]+")) {
             System.out.println("Wrong Format!");
             return false;
@@ -19,7 +24,7 @@ public class Validator {
         if(student.getGroup() >= 1000 || student.getGroup() <= 0){
             return false;
         }
-        return true;
+        return validateRegNb(student.getRegNumber());
     }
 
     public static boolean validateLaboratory(Laboratory laboratory) {
@@ -35,7 +40,7 @@ public class Validator {
         if(date.before(laboratory.getDate())) {
             return false;
         }
-        return true;
+        return validateRegNb(laboratory.getStudentRegNumber()) && validateGrade(laboratory.getGrade());
     }
 
     public static boolean validateGrade(float grade) {

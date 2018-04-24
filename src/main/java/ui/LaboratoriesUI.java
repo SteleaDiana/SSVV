@@ -87,12 +87,14 @@ public class LaboratoriesUI {
             }
 
             if(line.equals("3")){
-                String registrationNumber, labNumber;
+                String registrationNumber;
+                int labNumber;
                 float grade;
                 System.out.println("Student Registration Number: ");
                 registrationNumber = br.readLine();
                 System.out.println("Lab number: ");
-                labNumber = br.readLine();
+                String lab = br.readLine();
+                labNumber = Integer.parseInt(lab);
                 try {
                     System.out.println("Grade: ");
                     String gradeString = br.readLine();
