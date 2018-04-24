@@ -176,6 +176,11 @@ public class LaboratoriesControllerTest {
         assertFalse(success);
     }
 
+    @Test
+    public void getStudentsTest() throws Exception{
+        assertTrue(ctr.passedStudents().size()>0);
+    }
+
     public Laboratory getMockedLab(){
         Laboratory laboratory = new Laboratory();
         laboratory.setLaboratoryNumber(1);
