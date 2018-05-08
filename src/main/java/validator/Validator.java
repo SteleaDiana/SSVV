@@ -15,32 +15,51 @@ public class Validator {
         return true;
     }
 
-    public static boolean validateStudent(Student student) {
-
-        if (!student.getName().matches("[a-zA-Z]+[\\s]?[a-zA-Z]+")) {
+    public static boolean validateName(String name){
+        if(!name.matches("[a-zA-Z]+[\\s]?[a-zA-Z]+")) {
             System.out.println("Wrong Format!");
             return false;
         }
-        if(student.getGroup() >= 1000 || student.getGroup() <= 0){
+        return true;
+    }
+
+    public static boolean validateGroup(int group){
+        if(group >= 1000 || group<= 0){
             return false;
         }
-        return validateRegNb(student.getRegNumber());
+        return true;
+    }
+
+    public static boolean validateStudent(Student student) {
+        return validateRegNb(student.getRegNumber())&&validateName(student.getName())&&validateGroup(student.getGroup());
     }
 
     public static boolean validateLaboratory(Laboratory laboratory) {
-        if(laboratory.getLaboratoryNumber() < 1) {
+        return validateRegNb(laboratory.getStudentRegNumber()) && validateGrade(laboratory.getGrade())&& validateLabNb(laboratory.getLaboratoryNumber())&&validatePbNb(laboratory.getProblemNumber())&& validateDateBefore(laboratory.getDate());
+    }
+
+    public static boolean validateDateBefore(Date labDate){
+        Date date = new Date();
+        if(date.before(labDate)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateLabNb(int lab){
+        if (lab<1){
             System.out.println("The lab number should be > 1!");
             return false;
         }
-        if(laboratory.getProblemNumber() > 10 || laboratory.getProblemNumber() < 1) {
+        return true;
+    }
+
+    public static boolean validatePbNb(int pb){
+        if(pb > 10 || pb < 1) {
             System.out.println("The problem number should be between 1 and 10!");
             return false;
         }
-        Date date = new Date();
-        if(date.before(laboratory.getDate())) {
-            return false;
-        }
-        return validateRegNb(laboratory.getStudentRegNumber()) && validateGrade(laboratory.getGrade());
+        return true;
     }
 
     public static boolean validateGrade(float grade) {

@@ -159,7 +159,8 @@ public class LaboratoriesControllerTest {
     @Test
     public void addLaboratoryWithWrongDate() throws Exception {
         Laboratory laboratory = getMockedLab();
-        laboratory.setDate(new Date("18-Feb-2019"));
+        Date date = new Date("18-Dec-2019");
+        laboratory.setDate(date);
         Boolean success = ctr.saveLaboratory(laboratory);
         assertFalse(success);
     }
@@ -187,7 +188,7 @@ public class LaboratoriesControllerTest {
         laboratory.setGrade(2);
         laboratory.setDate(new Date("12-Apr-2018"));
         laboratory.setProblemNumber(7);
-        laboratory.setStudentRegNumber("aaaa1234");
+        laboratory.setStudentRegNumber("sdie2021");
         return laboratory;
     }
 

@@ -17,6 +17,26 @@ import java.util.Map;
 
 public class FileDataPersistence {
     private String file;
+    private List<Student> studentList = new ArrayList<>();
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public List<Laboratory> getLaboratoryList() {
+        return laboratoryList;
+    }
+
+    public void setLaboratoryList(List<Laboratory> laboratoryList) {
+        this.laboratoryList = laboratoryList;
+    }
+
+    private List<Laboratory> laboratoryList = new ArrayList<>();
+
 
     public FileDataPersistence(String file) {
         this.file = file;
@@ -32,14 +52,14 @@ public class FileDataPersistence {
 
     public void saveStudent(Student student) {
         try {
-            //if(studentExists(student)){
-
-            //}else{
+            if(studentExists(student.getRegNumber())){
+                System.out.println("Student exists");
+            } else{
                 BufferedWriter writer;
                 writer = new BufferedWriter(new FileWriter(file, true));
                 writer.write(student.toString() + "\n");
                 writer.close();
-            //}
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -48,9 +68,13 @@ public class FileDataPersistence {
     public void saveLaboratory(Laboratory laboratory) {
         BufferedWriter writter;
         try {
-            writter = new BufferedWriter(new FileWriter(file, true));
-            writter.write(laboratory.toString() + "\n");
-            writter.close();
+//            if(studentExists(laboratory.getStudentRegNumber())){
+                writter = new BufferedWriter(new FileWriter(file, true));
+                writter.write(laboratory.toString() + "\n");
+                writter.close();
+//            }else{
+//                System.out.println("The student "+laboratory.getStudentRegNumber()+" does not exist");
+//            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -128,9 +152,9 @@ public class FileDataPersistence {
         return allStudentsList;
     }
 
-    public boolean studentExists(Student student) throws IOException {
+    public boolean studentExists(String regNb) throws IOException {
         for(Student s: getStudentsList()){
-            if(s.getRegNumber() == student.getRegNumber()){
+            if(s.getRegNumber().equals(regNb)){
                 return true;
             }
         }
